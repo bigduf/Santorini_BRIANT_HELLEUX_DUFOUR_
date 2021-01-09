@@ -11,6 +11,13 @@ package santorini_briant_helleux_dufour;
 public class Plateau {
     Cellules[][] plateau = new Cellules [5][5];
     
+    Plateau(){
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 5; j++){
+                plateau[i][j] = new Cellules();
+            }
+        }
+    }
     public Joueur etre_gagnant(){
         for (int i=0; i<=4; i++){
             for (int j=0; j<=4; j++){

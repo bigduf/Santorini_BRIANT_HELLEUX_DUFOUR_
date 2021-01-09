@@ -13,9 +13,9 @@ public class Joueur {
     String Couleur;
     String Nom;
     
-    public Joueur (String nom){
-        liste_perso[0].teinte= Couleur+"_clair";
-        liste_perso[1].teinte= Couleur+"_fonce";
-        Nom =nom;
+    public Joueur (String nom, String couleur){
+        liste_perso[0].teinte= couleur+"_clair";
+        liste_perso[1].teinte= couleur+"_fonce";
+        Nom = nom;
     }
 }

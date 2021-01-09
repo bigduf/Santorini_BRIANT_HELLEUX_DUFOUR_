@@ -5,6 +5,8 @@
  */
 package santorini_briant_helleux_dufour;
 
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -18,6 +20,16 @@ public class Santorini_graphique extends javax.swing.JFrame {
     Plateau plateau = new Plateau();
     int X;
     int Y;
+    ImageIcon bc = new javax.swing.ImageIcon(getClass().getResource("/icones/bc.png"));
+    ImageIcon bf = new javax.swing.ImageIcon(getClass().getResource("/icones/bf.png"));
+    ImageIcon mc = new javax.swing.ImageIcon(getClass().getResource("/icones/mc.png"));
+    ImageIcon mf = new javax.swing.ImageIcon(getClass().getResource("/icones/mf.png"));
+    
+    JButton btn_bc = new JButton(bc);
+    JButton btn_bf = new JButton(bf);
+    JButton btn_mc = new JButton(mc);
+    JButton btn_mf = new JButton(mf);
+    
     JButton btn_depl_hg = new JButton();
     JButton btn_depl_haut = new JButton();
     JButton btn_depl_hd = new JButton();
@@ -92,13 +104,12 @@ public class Santorini_graphique extends javax.swing.JFrame {
         lbl_couleur_j1 = new javax.swing.JLabel();
         lbl_couleur_j2 = new javax.swing.JLabel();
         plateau_jeu = new javax.swing.JPanel();
-        btn_pers_fonce = new javax.swing.JButton();
-        btn_pers_clair = new javax.swing.JButton();
         pnl_commande = new javax.swing.JPanel();
         pnl_infos = new javax.swing.JPanel();
         pnl_joueur_courant = new javax.swing.JPanel();
         lbl_joueurcourant = new javax.swing.JLabel();
         lbl_nom_joueurcourant = new javax.swing.JLabel();
+        pnl_choixpersos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,12 +125,14 @@ public class Santorini_graphique extends javax.swing.JFrame {
 
         lbl_joueur2.setText("Nom Joueur 2 :");
         pnl_info_joueur.add(lbl_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 30));
+        pnl_info_joueur.add(nom_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 60, -1));
 
-        nom_joueur2.setText("jTextField1");
-        pnl_info_joueur.add(nom_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
-
-        nom_joueur1.setText("jTextField1");
-        pnl_info_joueur.add(nom_joueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        nom_joueur1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nom_joueur1ActionPerformed(evt);
+            }
+        });
+        pnl_info_joueur.add(nom_joueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 60, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 255, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -142,30 +155,24 @@ public class Santorini_graphique extends javax.swing.JFrame {
         pnl_info_joueur.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 320, 200));
 
         lbl_couleur_j1.setText("marron");
-        pnl_info_joueur.add(lbl_couleur_j1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        pnl_info_joueur.add(lbl_couleur_j1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 20, 40, -1));
 
         lbl_couleur_j2.setText("bleu");
-        pnl_info_joueur.add(lbl_couleur_j2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+        pnl_info_joueur.add(lbl_couleur_j2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
-        getContentPane().add(pnl_info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, 320, 140));
+        getContentPane().add(pnl_info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 320, 140));
 
         plateau_jeu.setBackground(new java.awt.Color(0, 255, 204));
-        plateau_jeu.setLayout(new java.awt.GridLayout());
-        getContentPane().add(plateau_jeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 600, 510));
-
-        btn_pers_fonce.setText("jButton1");
-        getContentPane().add(btn_pers_fonce, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, 60));
-
-        btn_pers_clair.setText("jButton2");
-        getContentPane().add(btn_pers_clair, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 90, 100));
+        plateau_jeu.setLayout(new java.awt.GridLayout(5, 5));
+        getContentPane().add(plateau_jeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 550, 510));
 
         pnl_commande.setBackground(new java.awt.Color(0, 255, 204));
         pnl_commande.setLayout(new java.awt.GridLayout(3, 3));
-        getContentPane().add(pnl_commande, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, 330, 180));
+        getContentPane().add(pnl_commande, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, 320, 270));
 
         pnl_infos.setBackground(new java.awt.Color(0, 255, 204));
         pnl_infos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(pnl_infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 500, 290, 110));
+        getContentPane().add(pnl_infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 320, 130));
 
         pnl_joueur_courant.setBackground(new java.awt.Color(0, 255, 204));
         pnl_joueur_courant.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,10 +183,18 @@ public class Santorini_graphique extends javax.swing.JFrame {
         lbl_nom_joueurcourant.setText("jLabel6");
         pnl_joueur_courant.add(lbl_nom_joueurcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
-        getContentPane().add(pnl_joueur_courant, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, 320, 30));
+        getContentPane().add(pnl_joueur_courant, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 320, 30));
+
+        pnl_choixpersos.setBackground(new java.awt.Color(0, 255, 204));
+        pnl_choixpersos.setLayout(new java.awt.GridLayout(2, 1));
+        getContentPane().add(pnl_choixpersos, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 130, 350));
 
         setBounds(0, 0, 1222, 685);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nom_joueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_joueur1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nom_joueur1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,9 +419,22 @@ public class Santorini_graphique extends javax.swing.JFrame {
     }
 
     public void initialiserPartie() {
-        listeJoueurs[0] = new Joueur(nom_joueur1.getText());
-        listeJoueurs[1] = new Joueur(nom_joueur2.getText());
+        listeJoueurs[0] = new Joueur(nom_joueur1.getText(),"marron");
+        listeJoueurs[1] = new Joueur(nom_joueur2.getText(),"bleu");
         joueurCourant = listeJoueurs[0];
+        System.out.println(joueurCourant.Nom);
+        
+        lbl_nom_joueurcourant.setText(joueurCourant.Nom);
+        pnl_joueur_courant.repaint();
+        
+        if (joueurCourant == listeJoueurs[0]){
+            pnl_choixpersos.add(btn_mc);
+            pnl_choixpersos.add(btn_mf);
+        } else {
+            pnl_choixpersos.add(btn_bc);
+            pnl_choixpersos.add(btn_bf);
+
+        }
     }
 
     public void joueurSuivant() {
@@ -419,8 +447,6 @@ public class Santorini_graphique extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_demarrerpartie;
     private javax.swing.JButton btn_demarrerpartie1;
-    private javax.swing.JButton btn_pers_clair;
-    private javax.swing.JButton btn_pers_fonce;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
@@ -435,6 +461,7 @@ public class Santorini_graphique extends javax.swing.JFrame {
     private javax.swing.JTextField nom_joueur1;
     private javax.swing.JTextField nom_joueur2;
     private javax.swing.JPanel plateau_jeu;
+    private javax.swing.JPanel pnl_choixpersos;
     private javax.swing.JPanel pnl_commande;
     private javax.swing.JPanel pnl_info_joueur;
     private javax.swing.JPanel pnl_infos;
