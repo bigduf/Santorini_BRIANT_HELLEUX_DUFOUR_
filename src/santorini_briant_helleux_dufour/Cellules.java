@@ -28,6 +28,7 @@ public class Cellules {
             nb_etages += 1;
             return true;
         } else return false;
+        
     }
     
 }

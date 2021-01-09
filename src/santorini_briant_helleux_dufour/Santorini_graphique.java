@@ -7,6 +7,7 @@ package santorini_briant_helleux_dufour;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**
@@ -20,16 +21,7 @@ public class Santorini_graphique extends javax.swing.JFrame {
     Plateau plateau = new Plateau();
     int X;
     int Y;
-    ImageIcon bc = new javax.swing.ImageIcon(getClass().getResource("/icones/bc.png"));
-    ImageIcon bf = new javax.swing.ImageIcon(getClass().getResource("/icones/bf.png"));
-    ImageIcon mc = new javax.swing.ImageIcon(getClass().getResource("/icones/mc.png"));
-    ImageIcon mf = new javax.swing.ImageIcon(getClass().getResource("/icones/mf.png"));
-    
-    JButton btn_bc = new JButton(bc);
-    JButton btn_bf = new JButton(bf);
-    JButton btn_mc = new JButton(mc);
-    JButton btn_mf = new JButton(mf);
-    
+
     JButton btn_depl_hg = new JButton();
     JButton btn_depl_haut = new JButton();
     JButton btn_depl_hd = new JButton();
@@ -40,25 +32,50 @@ public class Santorini_graphique extends javax.swing.JFrame {
     JButton btn_depl_bas = new JButton();
     JButton btn_depl_bd = new JButton();
 
+    ImageIcon bc = new javax.swing.ImageIcon(getClass().getResource("/icones/bc.jpg"));
+    ImageIcon bf = new javax.swing.ImageIcon(getClass().getResource("/icones/bf.jpg"));
+    ImageIcon mc = new javax.swing.ImageIcon(getClass().getResource("/icones/mc.jpg"));
+    ImageIcon mf = new javax.swing.ImageIcon(getClass().getResource("/icones/mf.jpg"));
+
+    ImageIcon flechebd = new javax.swing.ImageIcon(getClass().getResource("/icones/flechebd.jpg"));
+    ImageIcon flechebg = new javax.swing.ImageIcon(getClass().getResource("/icones/flechebg.jpg"));
+    ImageIcon flechebm = new javax.swing.ImageIcon(getClass().getResource("/icones/flechebm.jpg"));
+    ImageIcon flechehd = new javax.swing.ImageIcon(getClass().getResource("/icones/flechehd.jpg"));
+    ImageIcon flechehg = new javax.swing.ImageIcon(getClass().getResource("/icones/flechehg.jpg"));
+    ImageIcon flechehm = new javax.swing.ImageIcon(getClass().getResource("/icones/flechehm.jpg"));
+    ImageIcon flechemd = new javax.swing.ImageIcon(getClass().getResource("/icones/flechemd.jpg"));
+    ImageIcon flechemg = new javax.swing.ImageIcon(getClass().getResource("/icones/flechemg.jpg"));
+    ImageIcon flechemm = new javax.swing.ImageIcon(getClass().getResource("/icones/flechemm.jpg"));
+
+    JButton btn_bc = new JButton(bc);
+    JButton btn_bf = new JButton(bf);
+    JButton btn_mc = new JButton(mc);
+    JButton btn_mf = new JButton(mf);
+
+    JButton btn_flechebd = new JButton(flechebd);
+    JButton btn_flechebg = new JButton(flechebg);
+    JButton btn_flechebm = new JButton(flechebm);
+    JButton btn_flechehd = new JButton(flechehd);
+    JButton btn_flechehg = new JButton(flechehg);
+    JButton btn_flechehm = new JButton(flechehm);
+    JButton btn_flechemd = new JButton(flechemd);
+    JButton btn_flechemg = new JButton(flechemg);
+    JButton btn_flechemm = new JButton(flechemm);
+
     /**
      * Creates new form Santorini_graphique
      */
     public Santorini_graphique() {
         initComponents();
-        plateau_jeu.setVisible(true);
+        plateau_jeu.setVisible(false);
         pnl_info_joueur.setVisible(true);
+        btn_demarrerpartie.setEnabled(true);
+        pnl_choixpersos.setVisible(false);
+        pnl_joueur_courant.setVisible(false);
+        pnl_commande.setVisible(false);
+        pnl_infos.setVisible(false);
         plateau_jeu.repaint();
         pnl_info_joueur.repaint();
-
-        pnl_commande.add(btn_depl_bd);
-        pnl_commande.add(btn_depl_hg);
-        pnl_commande.add(btn_depl_haut);
-        pnl_commande.add(btn_depl_hd);
-        pnl_commande.add(btn_depl_gauche);
-        pnl_commande.add(btn_depl_milieu);
-        pnl_commande.add(btn_depl_droite);
-        pnl_commande.add(btn_depl_bg);
-        pnl_commande.add(btn_depl_bas);
 
         for (int i = 4; i >= 0; i--) {
             for (int j = 0; j < 5; j++) {
@@ -79,7 +96,6 @@ public class Santorini_graphique extends javax.swing.JFrame {
         pnl_commande.repaint();
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +106,6 @@ public class Santorini_graphique extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_info_joueur = new javax.swing.JPanel();
-        btn_demarrerpartie = new javax.swing.JButton();
         lbl_joueur1 = new javax.swing.JLabel();
         lbl_joueur2 = new javax.swing.JLabel();
         nom_joueur2 = new javax.swing.JTextField();
@@ -103,6 +118,7 @@ public class Santorini_graphique extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         lbl_couleur_j1 = new javax.swing.JLabel();
         lbl_couleur_j2 = new javax.swing.JLabel();
+        btn_demarrerpartie = new javax.swing.JButton();
         plateau_jeu = new javax.swing.JPanel();
         pnl_commande = new javax.swing.JPanel();
         pnl_infos = new javax.swing.JPanel();
@@ -116,9 +132,6 @@ public class Santorini_graphique extends javax.swing.JFrame {
 
         pnl_info_joueur.setBackground(new java.awt.Color(0, 255, 204));
         pnl_info_joueur.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_demarrerpartie.setText("Démarrer partie");
-        pnl_info_joueur.add(btn_demarrerpartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         lbl_joueur1.setText("Nom Joueur 1 :");
         pnl_info_joueur.add(lbl_joueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 100, 20));
@@ -160,34 +173,40 @@ public class Santorini_graphique extends javax.swing.JFrame {
         lbl_couleur_j2.setText("bleu");
         pnl_info_joueur.add(lbl_couleur_j2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
-        getContentPane().add(pnl_info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 320, 140));
+        btn_demarrerpartie.setText("Démarrer partie");
+        btn_demarrerpartie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_demarrerpartieActionPerformed(evt);
+            }
+        });
+        pnl_info_joueur.add(btn_demarrerpartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+
+        getContentPane().add(pnl_info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 300, 140));
 
         plateau_jeu.setBackground(new java.awt.Color(0, 255, 204));
         plateau_jeu.setLayout(new java.awt.GridLayout(5, 5));
-        getContentPane().add(plateau_jeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 550, 510));
+        getContentPane().add(plateau_jeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 550, 510));
 
         pnl_commande.setBackground(new java.awt.Color(0, 255, 204));
         pnl_commande.setLayout(new java.awt.GridLayout(3, 3));
-        getContentPane().add(pnl_commande, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, 320, 270));
+        getContentPane().add(pnl_commande, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 200, 300, 300));
 
         pnl_infos.setBackground(new java.awt.Color(0, 255, 204));
         pnl_infos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(pnl_infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 320, 130));
+        getContentPane().add(pnl_infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, 300, 100));
 
         pnl_joueur_courant.setBackground(new java.awt.Color(0, 255, 204));
         pnl_joueur_courant.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_joueurcourant.setText("Joueur Courant :");
         pnl_joueur_courant.add(lbl_joueurcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        pnl_joueur_courant.add(lbl_nom_joueurcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 70, 30));
 
-        lbl_nom_joueurcourant.setText("jLabel6");
-        pnl_joueur_courant.add(lbl_nom_joueurcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
-
-        getContentPane().add(pnl_joueur_courant, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 320, 30));
+        getContentPane().add(pnl_joueur_courant, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 160, 300, 30));
 
         pnl_choixpersos.setBackground(new java.awt.Color(0, 255, 204));
         pnl_choixpersos.setLayout(new java.awt.GridLayout(2, 1));
-        getContentPane().add(pnl_choixpersos, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 130, 350));
+        getContentPane().add(pnl_choixpersos, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 250, 500));
 
         setBounds(0, 0, 1222, 685);
     }// </editor-fold>//GEN-END:initComponents
@@ -195,6 +214,19 @@ public class Santorini_graphique extends javax.swing.JFrame {
     private void nom_joueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_joueur1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nom_joueur1ActionPerformed
+
+    private void btn_demarrerpartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_demarrerpartieActionPerformed
+        // TODO add your handling code here:
+        pnl_commande.setVisible(true);
+        pnl_infos.setVisible(true);
+        pnl_joueur_courant.setVisible(true);
+        pnl_choixpersos.setVisible(true);
+        plateau_jeu.setVisible(true);
+
+        initialiserPartie();
+        plateau_jeu.repaint();
+        btn_demarrerpartie.setEnabled(false);
+    }//GEN-LAST:event_btn_demarrerpartieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,12 +301,10 @@ public class Santorini_graphique extends javax.swing.JFrame {
         }
     }
 
-    private void btn_pers_fonceActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        //recuperation des coordonees du perso choisi
+    private void btn_bfActionPerformed(java.awt.event.ActionEvent evt) {
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 4; j++) {
-                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[1]) {
+                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[0]) {
                     X = i;
                     Y = j;
                 }
@@ -291,12 +321,52 @@ public class Santorini_graphique extends javax.swing.JFrame {
         btn_depl_bas.setEnabled(true);
     }
 
-    private void btn_pers_clairActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btn_mcActionPerformed(java.awt.event.ActionEvent evt) {
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 4; j++) {
+                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[0]) {
+                    X = i;
+                    Y = j;
+                }
+            }
+        }
+        //activation des bouton de deplacements
+        btn_depl_hg.setEnabled(true);
+        btn_depl_gauche.setEnabled(true);
+        btn_depl_bg.setEnabled(true);
+        btn_depl_hd.setEnabled(true);
+        btn_depl_droite.setEnabled(true);
+        btn_depl_bd.setEnabled(true);
+        btn_depl_haut.setEnabled(true);
+        btn_depl_bas.setEnabled(true);
+    }
+
+    private void btn_mfActionPerformed(java.awt.event.ActionEvent evt) {
+        for (int i = 0; i <= 4; i++) {
+            for (int j = 0; j <= 4; j++) {
+                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[0]) {
+                    X = i;
+                    Y = j;
+                }
+            }
+        }
+        //activation des bouton de deplacements
+        btn_depl_hg.setEnabled(true);
+        btn_depl_gauche.setEnabled(true);
+        btn_depl_bg.setEnabled(true);
+        btn_depl_hd.setEnabled(true);
+        btn_depl_droite.setEnabled(true);
+        btn_depl_bd.setEnabled(true);
+        btn_depl_haut.setEnabled(true);
+        btn_depl_bas.setEnabled(true);
+    }
+
+    private void btn_bcActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         //recuperation des coordonees du perso choisi
         for (int i = 0; i <= 4; i++) {
             for (int j = 0; j <= 4; j++) {
-                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[0]) {
+                if (plateau.plateau[i][j].perso_courant == joueurCourant.liste_perso[1]) {
                     X = i;
                     Y = j;
                 }
@@ -409,39 +479,42 @@ public class Santorini_graphique extends javax.swing.JFrame {
         }
     }
 
-    private void btn_demarrerpartieActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        pnl_commande.setVisible(true);
-        pnl_infos.setVisible(true);
-        initialiserPartie();
-        plateau_jeu.repaint();
-        btn_demarrerpartie.setEnabled(false);
-    }
-
     public void initialiserPartie() {
-        listeJoueurs[0] = new Joueur(nom_joueur1.getText(),"marron");
-        listeJoueurs[1] = new Joueur(nom_joueur2.getText(),"bleu");
+        listeJoueurs[0] = new Joueur(nom_joueur1.getText(), "marron");
+        listeJoueurs[1] = new Joueur(nom_joueur2.getText(), "bleu");
         joueurCourant = listeJoueurs[0];
-        System.out.println(joueurCourant.Nom);
-        
-        lbl_nom_joueurcourant.setText(joueurCourant.Nom);
-        pnl_joueur_courant.repaint();
-        
-        if (joueurCourant == listeJoueurs[0]){
+        lbl_nom_joueurcourant.setText(nom_joueur1.getText());
+
+        pnl_commande.add(btn_flechehg);
+        pnl_commande.add(btn_flechehm);
+        pnl_commande.add(btn_flechehd);
+        pnl_commande.add(btn_flechemg);
+        pnl_commande.add(btn_flechemm);
+        pnl_commande.add(btn_flechemd);
+        pnl_commande.add(btn_flechebg);
+        pnl_commande.add(btn_flechebm);
+        pnl_commande.add(btn_flechebd);
+
+        if (joueurCourant == listeJoueurs[0]) {
             pnl_choixpersos.add(btn_mc);
             pnl_choixpersos.add(btn_mf);
         } else {
             pnl_choixpersos.add(btn_bc);
             pnl_choixpersos.add(btn_bf);
-
         }
     }
 
     public void joueurSuivant() {
+        pnl_choixpersos.removeAll();
         if (joueurCourant == listeJoueurs[1]) {
             joueurCourant = listeJoueurs[0];
+            pnl_choixpersos.add(btn_mc);
+            pnl_choixpersos.add(btn_mf);
+
         } else {
             joueurCourant = listeJoueurs[1];
+            pnl_choixpersos.add(btn_bc);
+            pnl_choixpersos.add(btn_bf);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

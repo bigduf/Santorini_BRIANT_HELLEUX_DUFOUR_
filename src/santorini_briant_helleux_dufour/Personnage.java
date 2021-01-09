@@ -12,5 +12,10 @@ public class Personnage {
     Joueur joueur;
     Cellules cellule_actuelle;
     String teinte;
+    String Couleur;
+    
+    public Personnage(String couleur){
+        Couleur = couleur;
+    }
 }
     
